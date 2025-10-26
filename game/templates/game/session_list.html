@@ -1,0 +1,23 @@
+{% extends 'game/base.html' %}
+{% block content %}
+<h1>Game Sessions</h1>
+<a href="{% url 'create_session' %}" class="btn btn-success mb-3">Add Session</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Best Score</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.player.name }}</td>
+            <td>{{ session.best_score }}</td>
+            <td>{{ session.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

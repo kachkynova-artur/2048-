@@ -1,0 +1,25 @@
+{% extends 'game/base.html' %}
+{% block content %}
+<h1>Players</h1>
+<a href="{% url 'create_player' %}" class="btn btn-success mb-3">Add Player</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.name }}</td>
+            <td>{{ player.email }}</td>
+            <td>
+                <a href="{% url 'update_player' player.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

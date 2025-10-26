@@ -1,0 +1,8 @@
+{% extends 'game/base.html' %}
+{% block content %}
+<h1>Welcome to 2048!</h1>
+<p>Play the classic 2048 game and manage your sessions.</p>
+<a href="{% url 'create_session' %}" class="btn btn-primary">Start New Session</a>
+<div id="game-board"></div>
+<script src="{% static 'game/js/game2048.js' %}"></script>
+{% endblock %}
