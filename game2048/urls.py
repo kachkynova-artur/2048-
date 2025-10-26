@@ -28,3 +28,5 @@ urlpatterns = [
     path('sessions/create/', views.create_session, name='create_session'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+path('save_score/', views.save_score, name='save_score'),

@@ -54,3 +54,18 @@ def create_session(request):
 def session_list(request):
     sessions = GameSession.objects.all()
     return render(request, 'game/session_list.html', {'sessions': sessions})
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+@csrf_exempt
+@login_required
+def save_score(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        score = data.get('score')
+        session = GameSession.objects.filter(player__user=request.user).latest('created_at')
+        GameResult.objects.create(session=session, score=score)
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
